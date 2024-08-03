@@ -7,17 +7,12 @@ pipeline {
         disableConcurrentBuilds()
         ansiColor('xterm')
     }
-    parameters{
-        choice(name: 'action', choices:['Apply', 'Destroy'], description: 'Pick something')
-    }
-
   
     stages {
         stage('init') {
             steps {
                 sh """
-                 echo "Hi this is testing"
-                 ls -ltr
+                npm install
                 """
             }
         }
