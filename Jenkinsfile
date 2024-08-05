@@ -9,6 +9,7 @@ pipeline {
     }
     environment{
         def appVersion = '' //variable declaration
+        nexusUrl = 'nexus.sdevops.cloud:8081'
     }
   
     stages {
@@ -39,6 +40,29 @@ pipeline {
                 """
             }
         }
+           stage('Nexus Artifact uploader') {
+            steps {
+                 script{
+                        nexusArtifactUploader(
+                        nexusVersion: 'nexus3',
+                        protocol: 'http',
+                        nexusUrl: "${nexusUrl}",
+                        groupId: 'com.expense',
+                        version: "${appVersion}",
+                        repository: "backend",
+                        credentialsId: 'nexus-auth',
+                        artifacts: [
+                            [artifactId: "backend" ,
+                            classifier: '',
+                            file: "backend-" + "${appVersion}" + '.zip',
+                            type: 'zip']
+                        ]
+                    )
+                }
+            }
+        }
+
+
                
     }
           
