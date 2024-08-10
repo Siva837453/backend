@@ -80,7 +80,7 @@ pipeline {
           
     post{
         always{
-            echo " i will always say hellow again "
+            echo " i will always say hellow again."
             deleteDir()
         }
         success{
