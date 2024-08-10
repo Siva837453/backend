@@ -46,7 +46,7 @@ pipeline {
                         nexusArtifactUploader(
                         nexusVersion: 'nexus3',
                         protocol: 'http',
-                        nexusUrl: "${nexusUrl}",
+                        nexusUrl: "${nexus_url}",
                         groupId: 'com.expense',
                         version: "${appVersion}",
                         repository: "backend",
